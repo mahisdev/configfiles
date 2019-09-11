@@ -1,0 +1,25 @@
+---
+# tasks file for dockset
+- name: Install required software
+  yum: name={{item}} state=present
+  with_items:
+        - docker
+        - nginx
+- name: Copy dockerfile and application 
+  copy:
+    src: "{{item.src}}" 
+    dest: "{{item.dest}}" 
+  with_items:
+     - src: "/git/html/"
+       dest: "/usr/share/nginx/html/"
+     - src: "/git/dockerfile"
+       dest: "/usr/bin/"
+  notify: restart nginx
+  notify: restart docker
+
+- name: create image
+  command: docker build -t "shopapp:v1" /usr/bin/
+
+- name: Create image and Containers
+  command: docker run -itd --name testapp2 -P shopapp:v1 /bin/bash
+  command: docker run -itd --name testapp3 -P shopapp:v1 /bin/bash
