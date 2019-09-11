@@ -2,3 +2,4 @@ docker build https://github.com/mahisdev/configfiles.git
 
 The above command will build an image from dockerfile risides in github
 copy index.html file from git hub in containet
+We can impement application in contaners and add them into AWS Application load balancer
