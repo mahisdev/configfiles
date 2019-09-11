@@ -1,4 +1,4 @@
 docker build https://github.com/mahisdev/configfiles.git
 
-The above command will build an emage from dockerfile risides in github
+The above command will build an image from dockerfile risides in github
 copy index.html file from git hub in containet
